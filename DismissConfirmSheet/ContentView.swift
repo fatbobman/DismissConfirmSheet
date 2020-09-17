@@ -47,7 +47,6 @@ struct ContentView: View {
                         sheetManager.type = .sheet
                         sheetManager.dismissControl = true
                         sheetManager.action = .new
-                        
                     }
                 }
             }

@@ -13,21 +13,13 @@ import SwiftUI
 import Combine
 
 public class AIOSheetManager:ObservableObject{
-    var action:AllInOneSheetAction? = nil{
-        didSet{
-            if type == .sheet {
-                sheetAction = action
-            }
-            if type == .fullScreenCover {
-                fullScreenAction = action
-            }
-        }
-    }
+    @Published var action:AllInOneSheetAction? = nil
     var unlock:Bool = false //false时无法下滑dismiss,由form程序维护
     var type:AllInOneSheetType = .sheet //sheet or fullScreenCover
     var dismissControl:Bool = true //是否启动dismiss阻止开关,true启动阻止
-    @Published var sheetAction:AllInOneSheetAction? = nil //用于激活sheet的item
-    @Published var fullScreenAction:AllInOneSheetAction? = nil //用于激活fullScreenCover的item
+    
+    @Published var showSheet = false
+    @Published var showFullCoverScreen = false
     
     var dismissed = PassthroughSubject<Bool,Never>()
     var dismissAction:(() -> Void)? = nil
@@ -48,6 +40,9 @@ struct XSheet:ViewModifier{
         return {
             (manager.dismissAction ?? {})()
             manager.dismissAction = nil
+            manager.action = nil
+            manager.showSheet = false
+            manager.showFullCoverScreen = false
         }
     }
     func body(content: Content) -> some View {
@@ -55,24 +50,43 @@ struct XSheet:ViewModifier{
             content
             
             Color.clear
-                .sheet(item: $manager.sheetAction,onDismiss:onDismiss){ action in
-                    reducer(action)
-                        .allowAutoDismiss(manager)
-                        .environmentObject(manager)
+                .sheet(isPresented: $manager.showSheet,onDismiss: onDismiss){
+                        if let action = manager.action
+                        {
+                            reducer(action)
+                            .allowAutoDismiss(manager)
+                            .environmentObject(manager)
+                        }
                     
                 }
+            
             Color.clear
-                .fullScreenCover(item: $manager.fullScreenAction,onDismiss:onDismiss){ action in
-                    reducer(action)
-                        .allowAutoDismiss(manager)
-                        .environmentObject(manager)
+                .fullScreenCover(isPresented: $manager.showFullCoverScreen,onDismiss: onDismiss){
+                        if let action = manager.action
+                        {
+                            reducer(action)
+                                .allowAutoDismiss(manager)
+                                .environmentObject(manager)
+                        }
                 }
         }
-        
+        .onChange(of: manager.action){ action in
+            guard action != nil else {
+                manager.showSheet = false
+                manager.showFullCoverScreen = false
+                return
+            }
+            if manager.type == .sheet {
+                manager.showSheet = true
+            }
+            if manager.type == .fullScreenCover{
+                manager.showFullCoverScreen = true
+            }
+        }
     }
 }
 
-enum AllInOneSheetAction:Identifiable{
+enum AllInOneSheetAction:Identifiable,Equatable{
     case show(student:Student)
     case edit(student:Student)
     case new

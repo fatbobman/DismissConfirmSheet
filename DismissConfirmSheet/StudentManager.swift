@@ -16,14 +16,16 @@ struct StudentManager: View {
     private let defaultState:MyState
     @State private var myState:MyState
     @State private var errors:[String] = []
-    @State private var confirm = false{
+    @State private var confirm = false
+    //是否发生改变.阻止cancel
+    @State private var changed = false{
         didSet{
             //控制sheet是否允许dismiss
             if action == .show {
                 sheetManager.unlock = true
             }
             else {
-                sheetManager.unlock = !confirm
+                sheetManager.unlock = !changed
             }
         }
     }
@@ -206,6 +208,7 @@ struct StudentManager: View {
         let r2 = checkSex()
         let r3 = checkBirthday()
         let r4 = checkChange()
+        changed = myState != defaultState
         return r1&&r2&&r3&&r4
     }
     

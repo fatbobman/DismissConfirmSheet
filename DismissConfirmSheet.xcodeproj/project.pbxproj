@@ -16,6 +16,7 @@
 		76EB75AC2510A17E00C331D8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB75AB2510A17E00C331D8 /* Persistence.swift */; };
 		76EB75AF2510A1D500C331D8 /* AllInOneSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB75AD2510A1D500C331D8 /* AllInOneSheet.swift */; };
 		76EB75B02510A1D500C331D8 /* SheetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EB75AE2510A1D500C331D8 /* SheetExtension.swift */; };
+		76EB75B22510B6E500C331D8 /* dissmissConfirmSheetPic.gif in Resources */ = {isa = PBXBuildFile; fileRef = 76EB75B12510B6E500C331D8 /* dissmissConfirmSheetPic.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		76EB75AB2510A17E00C331D8 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		76EB75AD2510A1D500C331D8 /* AllInOneSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllInOneSheet.swift; sourceTree = "<group>"; };
 		76EB75AE2510A1D500C331D8 /* SheetExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetExtension.swift; sourceTree = "<group>"; };
+		76EB75B12510B6E500C331D8 /* dissmissConfirmSheetPic.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = dissmissConfirmSheetPic.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				76EB75A22510A0C600C331D8 /* StudentManager.swift */,
 				76EB75AD2510A1D500C331D8 /* AllInOneSheet.swift */,
 				76EB75AE2510A1D500C331D8 /* SheetExtension.swift */,
+				76EB75B12510B6E500C331D8 /* dissmissConfirmSheetPic.gif */,
 				76EB75972510A09F00C331D8 /* Assets.xcassets */,
 				76EB759C2510A09F00C331D8 /* Info.plist */,
 				76EB75992510A09F00C331D8 /* Preview Content */,
@@ -141,6 +144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76EB75B22510B6E500C331D8 /* dissmissConfirmSheetPic.gif in Resources */,
 				76EB759B2510A09F00C331D8 /* Preview Assets.xcassets in Resources */,
 				76EB75982510A09F00C331D8 /* Assets.xcassets in Resources */,
 			);
